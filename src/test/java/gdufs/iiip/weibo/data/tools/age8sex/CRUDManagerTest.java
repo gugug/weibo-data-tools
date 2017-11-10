@@ -1,5 +1,6 @@
 package gdufs.iiip.weibo.data.tools.age8sex;
 
+import gdufs.iiip.weibo.data.config.DaoConfig;
 import gdufs.iiip.weibo.data.dao.MongoHelper;
 import org.bson.Document;
 import org.junit.Test;
@@ -13,7 +14,8 @@ import java.util.Map;
  * Created by gu on 2017/11/10.
  */
 public class CRUDManagerTest {
-    MongoHelper mongoHelper = new MongoHelper("weibo", "add", 27017);
+    DaoConfig daoConfig = new DaoConfig("weibo", "add", 27017);
+    MongoHelper mongoHelper = new MongoHelper(daoConfig);
     CRUDManager crudManager = new CRUDManager(mongoHelper, "age");
 
     @Test
