@@ -1,10 +1,10 @@
-package test;
+package gdufs.iiip.weibo.data.tools.others;
 
 import gdufs.iiip.weibo.data.config.DaoConfig;
 import gdufs.iiip.weibo.data.config.PathConfig;
 import gdufs.iiip.weibo.data.tools.chinamap.ChinaMapUtil;
-import gdufs.iiip.weibo.data.tools.transformtree.TransformTree;
 import gdufs.iiip.weibo.data.tools.topic.TopicJson;
+import gdufs.iiip.weibo.data.tools.transformtree.TransformTree;
 
 /**
  * Created by gu on 2017/11/10.
