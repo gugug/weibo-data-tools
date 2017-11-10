@@ -21,7 +21,7 @@ public class ChinaMapUtil {
      * @param eid       对应的事件id
      */
     public static void insertArea(DaoConfig daoConfig, String areapath, String eid) {
-        MongoHelper mongoHelper = new MongoHelper(daoConfig.getDBName(), daoConfig.getServerAddress(), daoConfig.getPORT());
+        MongoHelper mongoHelper = new MongoHelper(daoConfig);
         MongoClient mongoClient = mongoHelper.getMongoClient();
         MongoDatabase mongoDataBase = mongoHelper.getMongoDataBase(mongoClient);
         MongoDaoImpl mongoDaoImpl = new MongoDaoImpl();
