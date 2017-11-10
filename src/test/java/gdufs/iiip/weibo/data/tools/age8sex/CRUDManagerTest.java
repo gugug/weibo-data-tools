@@ -41,10 +41,14 @@ public class CRUDManagerTest {
 
     @Test
     public void deleteOne() throws Exception {
+        Map<String, Object> ageMap = new HashMap<String, Object>();
+        crudManager.deleteOne(ageMap);
     }
 
     @Test
     public void deleteMany() throws Exception {
+        Map<String, Object> ageMap = new HashMap<String, Object>();
+        crudManager.deleteMany(ageMap);
     }
 
     @Test
