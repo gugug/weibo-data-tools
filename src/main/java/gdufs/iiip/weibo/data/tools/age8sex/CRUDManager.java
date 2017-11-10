@@ -29,21 +29,21 @@ public class CRUDManager {
         this.TABLE_NAME = TABLE_NAME;
     }
 
-    public boolean insert(Map<String, Object> ageMap) {
-        return mongoDaoImpl.insert(mongoDataBase, TABLE_NAME, new Document(ageMap));
+    public boolean insert(Map<String, Object> map) {
+        return mongoDaoImpl.insert(mongoDataBase, TABLE_NAME, new Document(map));
     }
 
     public boolean insertMany(List<Document> documents) {
         return mongoDaoImpl.insertMany(mongoDataBase, TABLE_NAME, documents);
     }
 
-    public boolean deleteOne(Map<String, Object> ageMap) {
+    public boolean deleteOne(Map<String, Object> map) {
         //   根据map 删除mongodb里找到的第一个
-        return mongoDaoImpl.deleteOne(mongoDataBase, TABLE_NAME, new BasicDBObject(ageMap));
+        return mongoDaoImpl.deleteOne(mongoDataBase, TABLE_NAME, new BasicDBObject(map));
     }
 
-    public boolean deleteMany(Map<String, Object> ageMap) {
-        return mongoDaoImpl.delete(mongoDataBase, TABLE_NAME, new BasicDBObject(ageMap));
+    public boolean deleteMany(Map<String, Object> map) {
+        return mongoDaoImpl.delete(mongoDataBase, TABLE_NAME, new BasicDBObject(map));
     }
 
     public boolean updateMany(Map<String, Object> updateDoc, Map<String, Object> wehereDoc) {
