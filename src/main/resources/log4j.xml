@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<param name="Threshold" value="${log.stdout.level}"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+			       value="[%d{HH:mm:ss}][%-5p][%t][%X{traceId}] %C{1}.%M - %m%n"/>
+		</layout>
+	</appender>
+
+	<appender name="ERROR"
+	          class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${log.home}/yyyy-MM-dd/weibo.log"/>
+		<!--<param name="DatePattern" value="/../../yyyy-MM-dd/weibo.log"/>-->
+		<param name="Append" value="true"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+			       value="[%d{yyyy-MM-dd HH:mm:ss}][%t][%-5p][%X{traceId}] %C{1}.%M - %m%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR"/>
+		</filter>
+	</appender>
+
+	<appender name="WARN"
+	          class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${log.home}/yyyy-MM-dd/weibo_warn.log"/>
+		<!--<param name="DatePattern" value="/../../yyyy-MM-dd/weibo_warn.log"/>-->
+		<param name="Append" value="true"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+			       value="[%d{yyyy-MM-dd HH:mm:ss}][%t][%-5p][%X{traceId}] %C{1}.%M - %m%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN"/>
+			<param name="LevelMax" value="WARN"/>
+		</filter>
+	</appender>
+
+	<appender name="DEBUG"
+	          class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+			       value="[%d{yyyy-MM-dd HH:mm:ss}][%t][%-5p][%X{traceId}] %C{1}.%M - %m%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG"/>
+			<param name="LevelMax" value="INFO"/>
+		</filter>
+	</appender>
+	
+	<category name="" additivity="false">
+		<priority value="INFO"/>
+	</category>
+
+	<category name="" additivity="false">
+		<priority value="${log.priority}"/>
+		<appender-ref ref="ERROR"/>
+		<appender-ref ref="WARN"/>
+		<appender-ref ref="DEBUG"/>
+		<appender-ref ref="STDOUT"/>
+	</category>
+
+
+	<root>
+		<priority value="WARN"/>
+		<appender-ref ref="ERROR"/>
+		<appender-ref ref="WARN"/>
+		<appender-ref ref="DEBUG"/>
+		<appender-ref ref="STDOUT"/>
+	</root>
+
+
+</log4j:configuration>
