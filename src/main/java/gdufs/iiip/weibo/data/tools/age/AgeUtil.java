@@ -19,6 +19,13 @@ public class AgeUtil {
         crudManager.closeMongoClient();
     }
 
+    public static void printAge(DaoConfig daoConfig) {
+        MongoHelper mongoHelper = new MongoHelper(daoConfig);
+        CRUDManager crudManager = new CRUDManager(mongoHelper, "age");
+        crudManager.printAll();
+        crudManager.closeMongoClient();
+    }
+
     public static void main(String[] args) {
         DaoConfig daoConfig = new DaoConfig("aa", "sss", 33);
         Map<String, Object> ageMap = new HashMap<String, Object>();
