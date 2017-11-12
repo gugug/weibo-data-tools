@@ -18,6 +18,14 @@ public class SexUtil {
         crudManager.closeMongoClient();
     }
 
+    public static void printSex(DaoConfig daoConfig) {
+        MongoHelper mongoHelper = new MongoHelper(daoConfig);
+        CRUDManager crudManager = new CRUDManager(mongoHelper, "sex");
+        crudManager.printAll();
+        crudManager.closeMongoClient();
+    }
+
+
     public static void main(String[] args) {
         DaoConfig daoConfig = new DaoConfig("aa", "sss", 33);
         Map<String, Object> sexMap = new HashMap<String, Object>();
