@@ -3,8 +3,6 @@ package gdufs.iiip.weibo.data.dao;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
-import gdufs.iiip.weibo.data.dao.MongoDaoImpl;
-import gdufs.iiip.weibo.data.dao.MongoHelper;
 import org.bson.Document;
 
 import java.util.List;
