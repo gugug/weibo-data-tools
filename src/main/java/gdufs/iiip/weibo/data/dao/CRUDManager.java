@@ -1,4 +1,4 @@
-package gdufs.iiip.weibo.data.tools.age8sex;
+package gdufs.iiip.weibo.data.dao;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
@@ -26,6 +26,14 @@ public class CRUDManager {
         this.mongoClient = mongoHelper.getMongoClient();
         this.mongoDataBase = mongoHelper.getMongoDataBase(mongoClient);
         this.mongoDaoImpl = new MongoDaoImpl();
+        this.TABLE_NAME = TABLE_NAME;
+    }
+
+    public String getTABLE_NAME() {
+        return TABLE_NAME;
+    }
+
+    public void setTABLE_NAME(String TABLE_NAME) {
         this.TABLE_NAME = TABLE_NAME;
     }
 
