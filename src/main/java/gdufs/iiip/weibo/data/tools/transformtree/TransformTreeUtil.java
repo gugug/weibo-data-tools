@@ -11,9 +11,9 @@ import java.util.*;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class TransformTree {
+public class TransformTreeUtil {
 
-    private static final Logger LOG = LoggerFactory.getLogger(TransformTree.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TransformTreeUtil.class);
 
     public static void main(String[] args) {
         String transformtxtpath = "C:\\Users\\gu\\Desktop\\incint_path2.txt";
