@@ -3,14 +3,9 @@ package gdufs.iiip.weibo.data.tools.chinamap;
 import java.util.Map;
 
 import gdufs.iiip.weibo.data.config.DaoConfig;
-import gdufs.iiip.weibo.data.tools.age8sex.CRUDManager;
+import gdufs.iiip.weibo.data.dao.CRUDManager;
 import gdufs.iiip.weibo.data.utils.FileUtil;
-import gdufs.iiip.weibo.data.dao.MongoDaoImpl;
 import gdufs.iiip.weibo.data.dao.MongoHelper;
-import org.bson.Document;
-
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
 
 public class ChinaMapUtil {
 
@@ -27,6 +22,7 @@ public class ChinaMapUtil {
         Map<String, Object> areaMap = FileUtil.readAreaTxt(areapath);
         areaMap.put("_id", Integer.parseInt(eid));
         crudManager.insert(areaMap);
+        crudManager.closeMongoClient();
     }
 
     public static void main(String[] args) {
