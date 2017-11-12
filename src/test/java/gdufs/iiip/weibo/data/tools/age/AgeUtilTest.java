@@ -1,6 +1,8 @@
 package gdufs.iiip.weibo.data.tools.age;
 
 import gdufs.iiip.weibo.data.config.DaoConfig;
+import gdufs.iiip.weibo.data.dao.CRUDManager;
+import gdufs.iiip.weibo.data.dao.MongoHelper;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -23,6 +25,13 @@ public class AgeUtilTest {
         ageMap.put("a95", 2303);
         ageMap.put("anull", 4181);
         AgeUtil.insertAge(daoConfig, ageMap);
+    }
+
+    public static void printAge(DaoConfig daoConfig) {
+        MongoHelper mongoHelper = new MongoHelper(daoConfig);
+        CRUDManager crudManager = new CRUDManager(mongoHelper, "age");
+        crudManager.printAll();
+        crudManager.closeMongoClient();
     }
 
 }
