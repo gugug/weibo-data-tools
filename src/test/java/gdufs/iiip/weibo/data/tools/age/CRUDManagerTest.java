@@ -1,6 +1,7 @@
-package gdufs.iiip.weibo.data.tools.age8sex;
+package gdufs.iiip.weibo.data.tools.age;
 
 import gdufs.iiip.weibo.data.config.DaoConfig;
+import gdufs.iiip.weibo.data.dao.CRUDManager;
 import gdufs.iiip.weibo.data.dao.MongoHelper;
 import org.bson.Document;
 import org.junit.Test;
