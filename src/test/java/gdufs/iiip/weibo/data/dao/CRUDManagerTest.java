@@ -1,8 +1,6 @@
-package gdufs.iiip.weibo.data.tools.age;
+package gdufs.iiip.weibo.data.dao;
 
 import gdufs.iiip.weibo.data.config.DaoConfig;
-import gdufs.iiip.weibo.data.dao.CRUDManager;
-import gdufs.iiip.weibo.data.dao.MongoHelper;
 import org.bson.Document;
 import org.junit.Test;
 
@@ -15,6 +13,7 @@ import java.util.Map;
  * Created by gu on 2017/11/10.
  */
 public class CRUDManagerTest {
+
     DaoConfig daoConfig = new DaoConfig("weibo", "add", 27017);
     MongoHelper mongoHelper = new MongoHelper(daoConfig);
     CRUDManager crudManager = new CRUDManager(mongoHelper, "age");
@@ -24,10 +23,6 @@ public class CRUDManagerTest {
         Map<String, Object> ageMap = new HashMap<String, Object>();
         ageMap.put("_id", 311);
         ageMap.put("a79", 1283);
-        ageMap.put("a80", 728);
-        ageMap.put("a90", 1502);
-        ageMap.put("a95", 2303);
-        ageMap.put("anull", 4181);
         crudManager.insert(ageMap);
         crudManager.closeMongoClient();
     }
