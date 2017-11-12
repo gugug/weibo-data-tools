@@ -29,7 +29,7 @@ public class AllToolsTest {
     }
 
     public static void testChinaMap() {
-        DaoConfig daoConfig = new DaoConfig("weibo", "127.0.0.1", 27017);
+        DaoConfig daoConfig = new DaoConfig("wb", "127.0.0.1", 2251);
         String areapath = "/media/iiip/Elements/WeiboData/WeiboNew/教师殴打环卫/area.txt";
         String eid = "594";
         ChinaMapUtil.insertArea(daoConfig, areapath, eid);
@@ -51,6 +51,7 @@ public class AllToolsTest {
         ageMap.put("_id", 311);
         ageMap.put("a79", 1283);
         AgeUtil.insertAge(daoConfig, ageMap);
+        AgeUtil.printAge(daoConfig);
     }
 
     public void testInsertSex() throws Exception {
@@ -59,6 +60,7 @@ public class AllToolsTest {
         sexMap.put("_id", 311);
         sexMap.put("girl", 1283);
         SexUtil.insertSex(daoConfig, sexMap);
+        SexUtil.printSex(daoConfig);
     }
 
 }
