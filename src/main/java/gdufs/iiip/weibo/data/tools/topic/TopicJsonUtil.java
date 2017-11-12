@@ -18,9 +18,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * @author iiip
  */
-public class TopicJson {
+public class TopicJsonUtil {
 
-    private static final Logger LOG = LoggerFactory.getLogger(TopicJson.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TopicJsonUtil.class);
 
     public static void main(String[] args) {
         String path = "topic594.xml";
