@@ -20,11 +20,11 @@ public class SexUtil {
 
     public static void main(String[] args) {
         DaoConfig daoConfig = new DaoConfig("aa", "sss", 33);
-        Map<String, Object> ageMap = new HashMap<String, Object>();
-        ageMap.put("_id", 311);
-        ageMap.put("girl", 1283);
-        ageMap.put("boy", 728);
-        insertSex(daoConfig, ageMap);
+        Map<String, Object> sexMap = new HashMap<String, Object>();
+        sexMap.put("_id", 311);
+        sexMap.put("girl", 1283);
+        sexMap.put("boy", 728);
+        insertSex(daoConfig, sexMap);
     }
 
 }
