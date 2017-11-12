@@ -5,7 +5,7 @@ import gdufs.iiip.weibo.data.config.PathConfig;
 import gdufs.iiip.weibo.data.tools.age.AgeUtil;
 import gdufs.iiip.weibo.data.tools.chinamap.ChinaMapUtil;
 import gdufs.iiip.weibo.data.tools.sex.SexUtil;
-import gdufs.iiip.weibo.data.tools.topic.TopicJson;
+import gdufs.iiip.weibo.data.tools.topic.TopicJsonUtil;
 import gdufs.iiip.weibo.data.tools.transformtree.TransformTreeUtil;
 
 import java.util.HashMap;
@@ -37,7 +37,7 @@ public class AllToolsTest {
 
     public static void testTopic() {
         String path = "topic594.xml";
-        TopicJson.genTopicJson(path, "dir", "topic594.json", "教师殴打环卫");
+        TopicJsonUtil.genTopicJson(path, "dir", "topic594.json", "教师殴打环卫");
     }
 
     public static void testPath() {
