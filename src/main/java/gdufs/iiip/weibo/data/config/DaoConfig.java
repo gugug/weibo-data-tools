@@ -4,9 +4,9 @@ package gdufs.iiip.weibo.data.config;
  * Created by gu on 2017/11/10.
  */
 public class DaoConfig {
-    public String DBName = "weibo";
-    public String ServerAddress = "112.74.175.37";
-    public int PORT = 27017;
+    public String DBName = "wb";
+    public String ServerAddress = "112.*.*.*";
+    public int PORT = 21500;
 
     public DaoConfig() {
     }
