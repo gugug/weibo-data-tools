@@ -15,13 +15,13 @@ public class TransformTreeUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(TransformTreeUtil.class);
 
-    public static void main(String[] args) {
-        String transformtxtpath = "C:\\Users\\gu\\Desktop\\incint_path2.txt";
-        String eventName = "杭州保姆纵火";
-        String save = "C:\\Users\\gu\\Desktop";
-        String transformJson = genTransformJson(eventName, transformtxtpath, save, "transform1.json");
-        System.out.println(transformJson);
-    }
+//    public static void main(String[] args) {
+//        String transformtxtpath = "C:\\Users\\gu\\Desktop\\incint_path2.txt";
+//        String eventName = "杭州保姆纵火";
+//        String save = "C:\\Users\\gu\\Desktop";
+//        String transformJson = genTransformJson(eventName, transformtxtpath, save, "transform1.json");
+//        System.out.println(transformJson);
+//    }
 
     /**
      * 生成转发路径json数据
@@ -114,17 +114,31 @@ public class TransformTreeUtil {
      * @return 文本内容
      */
     private static String readTftxt(String transformtxtpath) {
+        return readTftxt(transformtxtpath,1);
+    }
+
+    /**
+     * 隔N行读取文件
+     * @param transformtxtpath 传播路径的文件所在地
+     * @param skipLineNum 每隔skipLineNum行读
+     * @return 读取的内容
+     */
+    private static String readTftxt(String transformtxtpath, int skipLineNum) {
         FileReader fr = null;
         BufferedReader br = null;
         StringBuffer sb = new StringBuffer();
+        int i = 0;
         try {
             File f = new File(transformtxtpath);
             fr = new FileReader(f);
             br = new BufferedReader(fr);
             String str;
             while ((str = br.readLine()) != null) {
-                sb.append(str);
-                sb.append("\n");
+                if(i % skipLineNum == 0){
+                    sb.append(str);
+                    sb.append("\n");
+                }
+                i++;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -145,6 +159,12 @@ public class TransformTreeUtil {
             }
         }
         return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        String transformtxtpath = "F:\\WeiboData\\WeiboNew\\豫章书院\\incident_path.txt";   //修改
+        String tftxt = readTftxt(transformtxtpath, 5);
+        FileUtil.rwFile(tftxt,"F:\\WeiboData\\WeiboNew\\豫章书院","incident_path1.txt");
     }
 
 }
