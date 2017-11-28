@@ -11,6 +11,7 @@ import java.util.*;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+@Deprecated
 public class TransformTreeUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(TransformTreeUtil.class);
@@ -114,13 +115,14 @@ public class TransformTreeUtil {
      * @return 文本内容
      */
     private static String readTftxt(String transformtxtpath) {
-        return readTftxt(transformtxtpath,1);
+        return readTftxt(transformtxtpath, 1);
     }
 
     /**
      * 隔N行读取文件
+     *
      * @param transformtxtpath 传播路径的文件所在地
-     * @param skipLineNum 每隔skipLineNum行读
+     * @param skipLineNum      每隔skipLineNum行读
      * @return 读取的内容
      */
     private static String readTftxt(String transformtxtpath, int skipLineNum) {
@@ -134,7 +136,7 @@ public class TransformTreeUtil {
             br = new BufferedReader(fr);
             String str;
             while ((str = br.readLine()) != null) {
-                if(i % skipLineNum == 0){
+                if (i % skipLineNum == 0) {
                     sb.append(str);
                     sb.append("\n");
                 }
@@ -164,7 +166,7 @@ public class TransformTreeUtil {
     public static void main(String[] args) {
         String transformtxtpath = "F:\\WeiboData\\WeiboNew\\豫章书院\\incident_path.txt";   //修改
         String tftxt = readTftxt(transformtxtpath, 5);
-        FileUtil.rwFile(tftxt,"F:\\WeiboData\\WeiboNew\\豫章书院","incident_path1.txt");
+        FileUtil.rwFile(tftxt, "F:\\WeiboData\\WeiboNew\\豫章书院", "incident_path1.txt");
     }
 
 }
