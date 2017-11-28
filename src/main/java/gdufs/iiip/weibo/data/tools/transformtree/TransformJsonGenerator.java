@@ -11,26 +11,32 @@ import java.util.*;
 /**
  * Created by gu on 2017/11/27.
  */
-public class CleanDataGenerator {
+public class TransformJsonGenerator {
     private static final String SPILT_SYMBOL = "~";
 
     public static void main(String[] args) {
-        //List<String> strings = subTxt("C:\\Users\\gu\\Desktop\\incident_path.txt");
-        // System.out.println(strings);
-        //reWriteTxt("虐童", strings, "C:\\Users\\gu\\Desktop", "incident_path_temp.txt");
-        Map<String, Integer> allNode = getAllNode("C:\\Users\\gu\\Desktop\\incident_path1.txt");
-//        System.out.println(allNode);
-        List<List<Node>> tupleList = getRelation("C:\\Users\\gu\\Desktop\\incident_path1.txt", allNode);
-//        System.out.println(tupleList);
-        genTreeResult(tupleList);
+        String transformTxt = "C:\\Users\\gu\\Desktop\\incident_path.txt";
+        String eventName = "虐童";
+        String saveDir = "C:\\Users\\gu\\Desktop";
+        String saveFileName = "transform1.json";
+        transformJsonGenerator(transformTxt, eventName, saveDir, saveFileName);
     }
 
-    public static void genTreeResult(List<List<Node>> tupleList) {
+    public static void transformJsonGenerator(String transformTxt, String eventName, String saveDir, String saveFileName) {
+        List<String> strings = subTxt(transformTxt);
+        String tempPath = new File(transformTxt).getParentFile().getPath();
+        String reWriteTxtPath = reWriteTxt(eventName, strings, tempPath, "incident_path_temp.txt");
+        Map<String, Integer> allNode = getAllNode(reWriteTxtPath);
+        List<List<Node>> tupleList = getRelation(reWriteTxtPath, allNode);
+        String treeResult = genTreeResult(tupleList);
+        new File(reWriteTxtPath).delete();
+        FileUtil.rwFile(treeResult, saveDir, saveFileName);
+    }
 
+    public static String genTreeResult(List<List<Node>> tupleList) {
         List<HashMap<String, String>> dataList = getVirtualResult(tupleList);
-
         // 节点列表（散列表，用于临时存储节点对象）
-        HashMap<Integer,Node> nodeList = new HashMap();
+        HashMap<Integer, Node> nodeList = new HashMap();
         // 根节点
         Node root = null;
         // 根据结果集构造节点列表（存入散列表）
@@ -42,7 +48,6 @@ public class CleanDataGenerator {
             node.parentId = dataRecord.get("parentId");
             nodeList.put(node.id, node);
         }
-        System.out.println(nodeList);
         // 构造无序的多叉树
         Set entrySet = nodeList.entrySet();
         for (Iterator it = entrySet.iterator(); it.hasNext(); ) {
@@ -54,9 +59,16 @@ public class CleanDataGenerator {
             }
         }
         // 输出无序的树形菜单的JSON字符串
-        System.out.println(root.toString());
+        // System.out.println(root.toString());
+        return root.toString();
     }
 
+    /**
+     * 把对应的<父，子>关系，使用结构体保存在字典里
+     *
+     * @param tupleList
+     * @return
+     */
     public static List<HashMap<String, String>> getVirtualResult(List<List<Node>> tupleList) {
 
         List dataList = new ArrayList();
@@ -71,11 +83,17 @@ public class CleanDataGenerator {
             dataRecord.put("name", tupleList.get(i).get(1).name);
             dataRecord.put("parentId", tupleList.get(i).get(0).id.toString());
             dataList.add(dataRecord);
-
         }
         return dataList;
     }
 
+    /**
+     * 读取裁剪后的链路关系，记录对应的<父，子>关系。 [[1,2],[2,3]....]
+     *
+     * @param source
+     * @param nodeMap
+     * @return
+     */
     public static List<List<Node>> getRelation(String source, Map<String, Integer> nodeMap) {
         List<List<Node>> tupleList = new ArrayList<>();
         FileReader fr = null;
@@ -128,6 +146,12 @@ public class CleanDataGenerator {
         return tupleList;
     }
 
+    /**
+     * 读取裁剪后的链路文件，为每一个链路赋予id
+     *
+     * @param source
+     * @return
+     */
     public static Map<String, Integer> getAllNode(String source) {
         FileReader fr = null;
         BufferedReader br = null;
@@ -166,15 +190,29 @@ public class CleanDataGenerator {
         return nodeMap;
     }
 
-    public static void reWriteTxt(String firstNodeName, List<String> strings, String filePath, String fileName) {
+    /**
+     * 保存裁剪后的传播关系
+     *
+     * @param firstNodeName
+     * @param strings
+     * @param filePath
+     * @param fileName
+     */
+    public static String reWriteTxt(String firstNodeName, List<String> strings, String filePath, String fileName) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < strings.size(); i++) {
             sb.append(firstNodeName).append(SPILT_SYMBOL).append(strings.get(i)).append("\n");
         }
         FileUtil.rwFile(sb.toString(), filePath, fileName);
-
+        return filePath + File.separator + fileName;
     }
 
+    /**
+     * 裁减重复的传播链路
+     *
+     * @param source
+     * @return
+     */
     public static List<String> subTxt(String source) {
         FileReader fr = null;
         BufferedReader br = null;
