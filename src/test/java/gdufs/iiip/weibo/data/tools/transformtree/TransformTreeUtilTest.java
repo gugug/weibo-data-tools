@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 /**
  * Created by gu on 2017/11/12.
  */
+@Deprecated
 public class TransformTreeUtilTest {
     @Test
     public void genTransformJson() throws Exception {
