@@ -14,13 +14,13 @@ import java.util.*;
 public class TransformJsonGenerator {
     private static final String SPILT_SYMBOL = "~";
 
-    public static void main(String[] args) {
-        String transformTxt = "C:\\Users\\gu\\Desktop\\incident_path.txt";
-        String eventName = "虐童";
-        String saveDir = "C:\\Users\\gu\\Desktop";
-        String saveFileName = "transform1.json";
-        transformJsonGenerator(transformTxt, eventName, saveDir, saveFileName);
-    }
+//    public static void main(String[] args) {
+//        String transformTxt = "C:\\Users\\gu\\Desktop\\incident_path.txt";
+//        String eventName = "虐童";
+//        String saveDir = "C:\\Users\\gu\\Desktop";
+//        String saveFileName = "transform1.json";
+//        transformJsonGenerator(transformTxt, eventName, saveDir, saveFileName);
+//    }
 
     /**
      * 封装
