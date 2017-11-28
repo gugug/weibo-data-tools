@@ -22,6 +22,13 @@ public class TransformJsonGenerator {
         transformJsonGenerator(transformTxt, eventName, saveDir, saveFileName);
     }
 
+    /**
+     * 封装
+     * @param transformTxt 转发链路的文件路径
+     * @param eventName 事件名字
+     * @param saveDir 保存jsons数据的文件夹
+     * @param saveFileName json文件命名<transform+eId.json></>
+     */
     public static void transformJsonGenerator(String transformTxt, String eventName, String saveDir, String saveFileName) {
         List<String> strings = subTxt(transformTxt);
         String tempPath = new File(transformTxt).getParentFile().getPath();
@@ -33,7 +40,13 @@ public class TransformJsonGenerator {
         FileUtil.rwFile(treeResult, saveDir, saveFileName);
     }
 
-    public static String genTreeResult(List<List<Node>> tupleList) {
+    /**
+     * 把父子关系 转化为树状图
+     *
+     * @param tupleList
+     * @return
+     */
+    private static String genTreeResult(List<List<Node>> tupleList) {
         List<HashMap<String, String>> dataList = getVirtualResult(tupleList);
         // 节点列表（散列表，用于临时存储节点对象）
         HashMap<Integer, Node> nodeList = new HashMap();
@@ -69,7 +82,7 @@ public class TransformJsonGenerator {
      * @param tupleList
      * @return
      */
-    public static List<HashMap<String, String>> getVirtualResult(List<List<Node>> tupleList) {
+    private static List<HashMap<String, String>> getVirtualResult(List<List<Node>> tupleList) {
 
         List dataList = new ArrayList();
         HashMap<String, String> headDataRecord = new HashMap();
@@ -94,7 +107,7 @@ public class TransformJsonGenerator {
      * @param nodeMap
      * @return
      */
-    public static List<List<Node>> getRelation(String source, Map<String, Integer> nodeMap) {
+    private static List<List<Node>> getRelation(String source, Map<String, Integer> nodeMap) {
         List<List<Node>> tupleList = new ArrayList<>();
         FileReader fr = null;
         BufferedReader br = null;
@@ -152,7 +165,7 @@ public class TransformJsonGenerator {
      * @param source
      * @return
      */
-    public static Map<String, Integer> getAllNode(String source) {
+    private static Map<String, Integer> getAllNode(String source) {
         FileReader fr = null;
         BufferedReader br = null;
         Map<String, Integer> nodeMap = new HashMap<String, Integer>();
@@ -198,7 +211,7 @@ public class TransformJsonGenerator {
      * @param filePath
      * @param fileName
      */
-    public static String reWriteTxt(String firstNodeName, List<String> strings, String filePath, String fileName) {
+    private static String reWriteTxt(String firstNodeName, List<String> strings, String filePath, String fileName) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < strings.size(); i++) {
             sb.append(firstNodeName).append(SPILT_SYMBOL).append(strings.get(i)).append("\n");
@@ -213,7 +226,7 @@ public class TransformJsonGenerator {
      * @param source
      * @return
      */
-    public static List<String> subTxt(String source) {
+    private static List<String> subTxt(String source) {
         FileReader fr = null;
         BufferedReader br = null;
         List<String> results = new ArrayList<>();
